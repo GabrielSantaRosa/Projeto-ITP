@@ -1,4 +1,5 @@
 
+
 struct Cor
 {
     unsigned int r, g, b;
@@ -11,4 +12,5 @@ class Paleta{
     public:
     Paleta(int q, Cor c[], int a[]);
     Paleta Ler_arquivo();
+    Cor Consulta_cor(int a);
 };
