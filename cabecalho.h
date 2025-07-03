@@ -1,16 +1,14 @@
-#include <iostream>
-#include <vector>
 
 struct Cor
 {
     unsigned int r, g, b;
 };
 
-
 class Paleta{
-    int quant;
-    std::vector <Cor> cores;
-    std::vector <int> valores; 
-    
+    int quantidade;
+    Cor cores[100];
+    int altura[100]; 
+    public:
+    Paleta(int q, Cor c[], int a[]);
+    Paleta Ler_arquivo();
 };
-
