@@ -1,4 +1,6 @@
-
+#ifndef __PALETA
+#define __PALETA
+#include <string>
 struct Cor
 {
     unsigned int r, g, b;
@@ -10,9 +12,11 @@ class Paleta{
     int altura[100];
 
     public:
-    int getquantidade();
-    Cor getcor();
+    Paleta();
     Paleta(int q, Cor c[], int a[]);
-    void Ler_arquivo(string arquivo);
+    int Consulta_quantidade();
+    void Ler_arquivo(std::string arquivo);
     Cor Consulta_cor(int a);
 };
+
+#endif
