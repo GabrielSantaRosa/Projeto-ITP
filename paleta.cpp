@@ -4,6 +4,13 @@
 #include <iostream>
 using namespace std;
 
+bool operator==(const Cor& cor_1, const Cor& cor_2)
+    {
+    return (cor_1.r == cor_2.r && cor_1.g == cor_2.g && cor_1.b == cor_2.b);
+    }
+
+
+
 Paleta::Paleta(){
 
 }
@@ -48,13 +55,6 @@ void Paleta::Ler_arquivo(string arquivo){
 
 }
 
-bool operator==(const Cor& lhs, const Cor& rhs)
-    {
-    return (lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b);
-    }
-
-
-
 
 int main(){
     Paleta x;
@@ -67,9 +67,12 @@ int main(){
     Paleta y = {2, array_cores, array_alturas};
     y.Consulta_cor(15);
     Cor verde = {0, 255, 0};
+    Cor azul = {0, 0, 255};
 
     
-    bool teste_1 = (verde == x.Consulta_cor(25));
+    bool teste_1 = (azul == x.Consulta_cor(25));
+    if(azul == x.Consulta_cor(25))
+
     cout << teste_1 << endl;
 
 
