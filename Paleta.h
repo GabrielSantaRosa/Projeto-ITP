@@ -1,14 +1,18 @@
 #ifndef __PALETA
 #define __PALETA
 #include <string>
+
 struct Cor
 {
-    unsigned int r, g, b;
+    unsigned int r; 
+    unsigned int g;
+    unsigned int b;
 };
 
 class Paleta{
-    int quantidade;
-    Cor cores[100];
+
+    int quantidade; //Quantidade de cores que a paleta possui
+    Cor cores[100]; 
     int altura[100];
 
     public:

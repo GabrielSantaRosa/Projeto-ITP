@@ -1,4 +1,4 @@
-#include "imagem.h"
+#include "Imagem.h"
 #include <iostream>
 Imagem::Imagem(int l, int a){
     largura = l;

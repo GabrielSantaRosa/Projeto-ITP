@@ -1,15 +1,12 @@
-#include "cor_e_paleta.h"
+#include "Paleta.h"
 #include <fstream>
 #include <string>
 #include <iostream>
 using namespace std;
 
-bool operator==(const Cor& cor_1, const Cor& cor_2)
-    {
+bool operator==(const Cor& cor_1, const Cor& cor_2){
     return (cor_1.r == cor_2.r && cor_1.g == cor_2.g && cor_1.b == cor_2.b);
-    }
-
-
+}
 
 Paleta::Paleta(){
 

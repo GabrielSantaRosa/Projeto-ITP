@@ -1,4 +1,4 @@
-#include "cor_e_paleta.h"
+#include "Paleta.h"
 #include <string>
 
 class Imagem{
