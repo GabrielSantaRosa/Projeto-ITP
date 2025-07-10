@@ -3,7 +3,8 @@
 
 class Imagem{
     int largura, altura;
-    Cor* pixels = new Cor[largura*altura]; 
+    Cor* pixels;
+    
     public:
     Imagem(int l, int a);
     Cor Consulta_pixel(int x, int y);

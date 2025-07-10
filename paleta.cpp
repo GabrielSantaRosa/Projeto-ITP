@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+
 using namespace std;
 
 bool operator==(const Cor& cor_1, const Cor& cor_2){
@@ -43,11 +44,7 @@ void Paleta::Ler_arquivo(string arquivo){
     canal >> quantidade;
     for(int i = 0; i < quantidade; i++){
         canal >> altura[i];
-        Cor temporaria;
-        int unsigned r, g, b;
-        canal >> r >> g >> b;
-        temporaria = {r, g, b};
-        cores[i] = temporaria;
+        canal >> cores[i].r >> cores[i].g >> cores[i].b;
     }
 
 }

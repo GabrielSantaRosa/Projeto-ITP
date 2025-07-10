@@ -11,9 +11,10 @@ struct Cor
 
 class Paleta{
 
+    static const int MAX_CORES = 100;
     int quantidade; //Quantidade de cores que a paleta possui
-    Cor cores[100]; 
-    int altura[100];
+    Cor cores[MAX_CORES]; 
+    int altura[MAX_CORES];
 
     public:
     Paleta();

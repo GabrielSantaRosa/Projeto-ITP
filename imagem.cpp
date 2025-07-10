@@ -3,12 +3,12 @@
 Imagem::Imagem(int l, int a){
     largura = l;
     altura = a;
-    // Cor* matriz = new Cor [l*a];
-    // for(int largura_i = 0; largura_i < l; largura_i++){
-    //     for(int altura_j = 0; altura_j < a; altura_j++){
-    //         pixels[largura_i] = matriz[largura_i*a + altura_j];
-    //     }
-    // }
+    Cor* matriz = new Cor [l*a];
+
+    for(int i = 0; l * a > i; i++)
+    {
+        pixels[i] = Cor();
+    }
 }
 
 Cor Imagem::Consulta_pixel(int x, int y){
