@@ -34,7 +34,7 @@ Cor Paleta::Consulta_cor(int a){
         }
         else{
             cor_final = cores[i+1];
-        }
+        }   
     }
     return cor_final;
 }
@@ -51,21 +51,23 @@ void Paleta::Ler_arquivo(string arquivo){
 
 
 int main(){
+    Cor vermelho = {255, 0 ,0 };
+    Cor verde = {0, 255, 0};
+    Cor azul = {0, 0, 255};
+    Cor preto = {0, 0, 0};
     Paleta x;
     string teste = "teste.txt";
     x.Ler_arquivo(teste);
-    Cor vermelho = {255, 0 ,0 };
-    Cor preto = {0, 0, 0};
+    
     Cor array_cores[2] = {vermelho, preto};
     int array_alturas[2] = {10, 20};
     Paleta y = {2, array_cores, array_alturas};
-    y.Consulta_cor(15);
-    Cor verde = {0, 255, 0};
-    Cor azul = {0, 0, 255};
+    //y.Consulta_cor(15);
+    
 
     
     bool teste_1 = (azul == x.Consulta_cor(25));
-    if(azul == x.Consulta_cor(25))
+    //if(azul == x.Consulta_cor(25))
 
     cout << teste_1 << endl;
 
