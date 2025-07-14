@@ -9,19 +9,20 @@ void Diamond(int matriz[],const int tamanho, int* point_tam, double rug, int i){
     int lin, col;
     lin = *point_tam;
     col = *point_tam;
-    cout << matriz[i] << " ";
-    cout << lin-1 <<" ";
-    cout << lin*tamanho+col+1 << " ";
-    cout << lin*tamanho-1 << " ";
-    int soma = matriz[i] + matriz[lin+i] + matriz[lin*tamanho+col+i] + matriz[lin*tamanho+i];
-    int pos = i + (lin+i) + (lin*tamanho+i) + (lin * tamanho + col+i) + (lin*tamanho+i);
-    cout << pos << endl;
+    i *= tamanho;
+    //cout << matriz[i] << " ";
+    //cout << matriz[lin+i] <<" ";
+    //cout << lin*tamanho+col+i << " ";
+    //cout << matriz[lin*tamanho+i] << " ";
+    int soma = matriz[i] + matriz[lin] + matriz[lin*tamanho+col] + matriz[lin*tamanho];
+    int pos = i + (lin) + (lin*tamanho) + (lin * tamanho + col) + (lin*tamanho);
+    //cout << pos << endl;
     soma *= rug/4;
 
-    *point_tam = ( *point_tam-1 ) /2;
+    *point_tam = ( *point_tam ) /2;
 
     matriz[*point_tam*tamanho + *point_tam] = soma;
-    cout << soma << endl;
+    //cout << soma << endl;
      
 
 }
@@ -42,7 +43,7 @@ void Terreno::Gerar_terreno(int n, double rug){
 
 int main(){
     int matriz[25];
-    int tam = 5;
+    int tam = 4;
     int* point_tam = &tam;
     double rug = 0.5; 
     int i = 0;
@@ -51,19 +52,44 @@ int main(){
             matriz[lin*5+col] = 0;
         }
     }
-    matriz[0] = 10;
-    matriz[4] = 10;
-    matriz[20] = 10;
-    matriz[24] = 10;
+    matriz[0] = 100;
+    matriz[4] = 100;
+    matriz[20] = 100;
+    matriz[24] = 100;
 
-    Diamond(matriz,25, point_tam,rug, i);
+    Diamond(matriz,5, point_tam,rug, i);
 
+    
+
+    matriz[10] = 50;
+    matriz[2] = 50;
+    matriz[14] = 50;
+    matriz[22] = 50;
+    
+    
     int controle = 0;
     for(int ix = 0; 25 > ix; ix++){
         cout << matriz[ix] << " ";
         controle++;
         if(controle % 5 == 0) cout << endl;
     }
+
+    while(i < 5){
+        cout << endl;
+        Diamond(matriz,5, point_tam,rug, i);
+        i++;
+        controle = 0;
+        for(int ix = 0; 25 > ix; ix++){
+        cout << matriz[ix] << " ";
+        controle++;
+        if(controle % 5 == 0) cout << endl;
+    }
+    
+    }
+
+
+
+
 
     return 0;
 }
