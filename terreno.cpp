@@ -2,32 +2,36 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
-
 using namespace std;
 
-void Diamond(int matriz[],const int tamanho, int* point_tam, double rug, int i){
-    int lin, col;
-    lin = *point_tam;
-    col = *point_tam;
-    i *= tamanho;
-    //cout << matriz[i] << " ";
-    //cout << matriz[lin+i] <<" ";
-    //cout << lin*tamanho+col+i << " ";
-    //cout << matriz[lin*tamanho+i] << " ";
-    int soma = matriz[i] + matriz[lin] + matriz[lin*tamanho+col] + matriz[lin*tamanho];
-    int pos = i + (lin) + (lin*tamanho) + (lin * tamanho + col) + (lin*tamanho);
-    //cout << pos << endl;
-    soma *= rug/4;
+int Array_uni(int lin, int col, int tamanho){
+    return lin * tamanho + col;
+}
 
-    *point_tam = ( *point_tam ) /2;
 
-    matriz[*point_tam*tamanho + *point_tam] = soma;
-    //cout << soma << endl;
-     
+void Diamond(int matriz[],const int tamanho, int des, double rug){
+
+    int metade_des = des/2;
+    for(int i = metade_des; i < tamanho-1; i += des){
+        for (int j = metade_des; j < tamanho-1; j += des)
+        {
+            int soma = 
+                    matriz[Array_uni(i - metade_des, j - metade_des, tamanho)] + 
+                    matriz[Array_uni(i - metade_des, j + metade_des, tamanho)] + 
+                    matriz[Array_uni(i + metade_des, j - metade_des, tamanho)] + 
+                    matriz[Array_uni(i + metade_des, j + metade_des, tamanho)];
+            soma *= rug/4;
+          
+            matriz[Array_uni(i, j, tamanho)] = soma;
+            cout << "mudei o ponto " << i << " " << j << " para o número " << soma << endl;
+        }
+        
+    }
 
 }
 
-void Square(int matriz[]){
+void Square(int matriz[], const int tamanho, int des, double rug){
+
 
 }
 
@@ -41,55 +45,38 @@ void Terreno::Gerar_terreno(int n, double rug){
 
 }
 
+void printMatriz(int matriz[], int tamanho) {
+    for (int y = 0; y < tamanho; ++y) {
+        for (int x = 0; x < tamanho; ++x) {
+            cout << matriz[Array_uni(x, y, tamanho)] << " ";
+        }
+        cout << endl;
+    }
+}
+
 int main(){
     int matriz[25];
-    int tam = 4;
-    int* point_tam = &tam;
-    double rug = 0.5; 
-    int i = 0;
-    for(int lin = 0; lin < 5; lin++){
-        for(int col = 0; col < 5; col++){
-            matriz[lin*5+col] = 0;
-        }
+    for(int i = 0; 25 > i; i++)
+    {
+        matriz[i] = 0;
     }
-    matriz[0] = 100;
-    matriz[4] = 100;
-    matriz[20] = 100;
-    matriz[24] = 100;
+    int tam = 5;
+    matriz[0] = 10;
+    matriz[2] = 10;
+    matriz[4] = 10;
+    matriz[10] = 10;
+    matriz[12] = 10;
+    matriz[14] = 10;
+    matriz[20] = 10;
+    matriz[22] = 10;
+    matriz[24] = 10;
+    double rug = 4.0;
+    int des = tam;
 
-    Diamond(matriz,5, point_tam,rug, i);
-
-    
-
-    matriz[10] = 50;
-    matriz[2] = 50;
-    matriz[14] = 50;
-    matriz[22] = 50;
-    
-    
-    int controle = 0;
-    for(int ix = 0; 25 > ix; ix++){
-        cout << matriz[ix] << " ";
-        controle++;
-        if(controle % 5 == 0) cout << endl;
-    }
-
-    while(i < 5){
-        cout << endl;
-        Diamond(matriz,5, point_tam,rug, i);
-        i++;
-        controle = 0;
-        for(int ix = 0; 25 > ix; ix++){
-        cout << matriz[ix] << " ";
-        controle++;
-        if(controle % 5 == 0) cout << endl;
-    }
-    
-    }
-
-
-
-
+ 
+    Diamond(matriz,tam,2, rug);
+    printMatriz(matriz,5);
 
     return 0;
 }
+
