@@ -9,6 +9,18 @@ int index(int x, int y, int tamanho) {
     return y * tamanho + x;  // Calcula o índice de uma matriz 2D armazenada em uma unidimensional
 }
 
+
+// Função para exibir a matriz
+void printMatriz(int matriz[], int tamanho) {
+    cout << endl;
+    for (int y = 0; y < tamanho; ++y) {
+        for (int x = 0; x < tamanho; ++x) {
+            cout << matriz[index(x, y, tamanho)] << " ";
+        }
+        cout << endl;
+    }
+}
+
 // Função Diamond - Calcula a média de 4 pontos e aplica a rugosidade
 void Diamond(int matriz[], int tamanho, double rug) {
     int step = tamanho - 1;  // O passo inicial é o tamanho da matriz menos 1
@@ -36,6 +48,7 @@ void Diamond(int matriz[], int tamanho, double rug) {
                 matriz[index(x, y, tamanho)] = avg + ((rand() / (double)RAND_MAX) * 2.0 - 1.0) * rug;
             }
         }
+        printMatriz(matriz, tamanho);
 
         // Square Step
         for (int y = 0; y < tamanho; y += halfStep) {
@@ -50,24 +63,19 @@ void Diamond(int matriz[], int tamanho, double rug) {
                 matriz[index(x, y, tamanho)] = avg + ((rand() / (double)RAND_MAX) * 2.0 - 1.0) * rug;
             }
         }
+        printMatriz(matriz, tamanho);
+        
 
         // Reduz o passo (step) pela metade a cada iteração
         step = halfStep;
 
         // Diminui a rugosidade a cada iteração
         rug *= 0.5;
+        
     }
 }
 
-// Função para exibir a matriz
-void printMatriz(int matriz[], int tamanho) {
-    for (int y = 0; y < tamanho; ++y) {
-        for (int x = 0; x < tamanho; ++x) {
-            cout << matriz[index(x, y, tamanho)] << " ";
-        }
-        cout << endl;
-    }
-}
+
 
 class Terreno {
 public:
@@ -86,10 +94,10 @@ void Terreno::Gerar_terreno(int n, double rug) {
 }
 
 int main() {
-    srand(time(0));
+    
 
     // Defina o tamanho da matriz (deve ser 2^n + 1)
-    int n = 3; // Exemplo: n = 3 => tamanho = 2^3 + 1 = 9
+    int n = 2; // Exemplo: n = 3 => tamanho = 2^3 + 1 = 9
     int tamanho = pow(2, n) + 1; // Cálculo do tamanho da matriz
     int* matriz = new int[tamanho * tamanho]; // Alocação dinâmica da matriz
 
@@ -99,7 +107,7 @@ int main() {
     }
 
     // Chama a função Diamond-Square
-    double rug = 0.5; // Define o valor de rugosidade
+    double rug = 0.4; // Define o valor de rugosidade
     Diamond(matriz, tamanho, rug);
 
     // Exibe a matriz gerada

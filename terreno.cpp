@@ -20,20 +20,43 @@ void Diamond(int matriz[],const int tamanho, int des, double rug){
                     matriz[Array_uni(i - metade_des, j + metade_des, tamanho)] + 
                     matriz[Array_uni(i + metade_des, j - metade_des, tamanho)] + 
                     matriz[Array_uni(i + metade_des, j + metade_des, tamanho)];
-            soma *= rug/4;
+            soma /= 4;
           
             matriz[Array_uni(i, j, tamanho)] = soma;
-            cout << "mudei o ponto " << i << " " << j << " para o número " << soma << endl;
+            
         }
         
     }
 
 }
 
+
 void Square(int matriz[], const int tamanho, int des, double rug){
+    int metade_des = des/2;
+    int soma = 0;
+    for(int i = 0; i < tamanho-1; i += metade_des){
+       
+        for (int j = i+metade_des%tamanho; j < tamanho-1; j += des)
+        {
+            
+            soma = matriz[Array_uni(i, j-metade_des+tamanho, tamanho)] +
+                matriz[Array_uni(i, j+metade_des, tamanho)] +
+                matriz[Array_uni(i+metade_des, j, tamanho)] +
+                matriz[Array_uni(i-metade_des+tamanho, j, tamanho)];
+                soma /= 4;
+               
+                matriz[Array_uni(i,j,tamanho)] = soma;
+        }
 
-
+    }
 }
+
+
+
+
+
+
+
 
 
 void Terreno::Gerar_terreno(int n, double rug){
@@ -52,7 +75,12 @@ void printMatriz(int matriz[], int tamanho) {
         }
         cout << endl;
     }
+    cout << endl;
 }
+
+
+
+
 
 int main(){
     int matriz[25];
@@ -60,22 +88,32 @@ int main(){
     {
         matriz[i] = 0;
     }
-    int tam = 5;
-    matriz[0] = 10;
-    matriz[2] = 10;
-    matriz[4] = 10;
-    matriz[10] = 10;
-    matriz[12] = 10;
-    matriz[14] = 10;
-    matriz[20] = 10;
-    matriz[22] = 10;
-    matriz[24] = 10;
-    double rug = 4.0;
-    int des = tam;
+    int des = 5;
+     int tam = 5;
+    matriz[0] = 100;
+   
+    matriz[4] = 100;
+    
+    
+    
+    matriz[20] = 100;
+   
+    matriz[24] = 100;
+     double rug = 0.4;
+    
+    while(des > 1){
+        Diamond(matriz,tam,des, rug);
+        Square(matriz, tam, des, rug);
+        printMatriz(matriz,5);
+    des /= 2;
+    } 
+        
+        printMatriz(matriz,5);
+   
+   
 
  
-    Diamond(matriz,tam,2, rug);
-    printMatriz(matriz,5);
+   
 
     return 0;
 }
