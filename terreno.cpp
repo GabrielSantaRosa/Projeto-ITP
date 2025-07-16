@@ -34,15 +34,15 @@ void Diamond(int matriz[],const int tamanho, int des, double rug){
 void Square(int matriz[], const int tamanho, int des, double rug){
     int metade_des = des/2;
     int soma = 0;
-    for(int i = 0; i < tamanho-1; i += metade_des){
+    for(int i = 0; i < tamanho; i += metade_des){
        
-        for (int j = i+metade_des%tamanho; j < tamanho-1; j += des)
+        for (int j = (i+metade_des)%des; j < tamanho; j += des)
         {
             
-            soma = matriz[Array_uni(i, j-metade_des+tamanho, tamanho)] +
-                matriz[Array_uni(i, j+metade_des, tamanho)] +
-                matriz[Array_uni(i+metade_des, j, tamanho)] +
-                matriz[Array_uni(i-metade_des+tamanho, j, tamanho)];
+            soma = matriz[Array_uni(i, (j-metade_des+tamanho)%tamanho, tamanho)] +
+                matriz[Array_uni(i, (j+metade_des)%tamanho, tamanho)] +
+                matriz[Array_uni((i+metade_des)%tamanho, j, tamanho)] +
+                matriz[Array_uni((i-metade_des+tamanho)%tamanho, j, tamanho)];
                 soma /= 4;
                
                 matriz[Array_uni(i,j,tamanho)] = soma;
