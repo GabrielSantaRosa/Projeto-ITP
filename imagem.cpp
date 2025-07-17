@@ -1,4 +1,4 @@
-#include "Imagem.h"
+#include "Arquivos_.h\Imagem.h"
 #include <iostream>
 #include <fstream>
 

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <cmath>
+
 using namespace std;
 
 int Array_uni(int lin, int col, int tamanho){

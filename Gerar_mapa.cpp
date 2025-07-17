@@ -1,11 +1,8 @@
-#include "Paleta.h"
-#include "Terreno.h"
-#include "Imagem.h"
+#include "Arquivos_.h\Paleta.h"
+#include "Arquivos_.h\Terreno.h"
+#include "Arquivos_.h\Imagem.h"
 #include "terreno.cpp"
 #include <cmath>
-
-
-
 
 Imagem* Terreno::Gerar_mapa(Paleta p, int n){
     int tamanho = pow(2,n) + 1;
@@ -21,8 +18,6 @@ Imagem* Terreno::Gerar_mapa(Paleta p, int n){
     return nova_imagem;
 
 }
-
-
 
 int main(){
     Paleta p;

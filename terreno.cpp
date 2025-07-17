@@ -1,4 +1,4 @@
-#include "Terreno.h"
+#include "Arquivos_.h\Terreno.h"
 #include "Diamond_Square.cpp"
 #include <iostream>
 #include <cmath>

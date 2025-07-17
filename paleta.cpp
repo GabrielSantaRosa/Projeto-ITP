@@ -1,4 +1,4 @@
-#include "Paleta.h"
+#include "Arquivos_.h\Paleta.h"
 #include <fstream>
 #include <string>
 #include <iostream>
