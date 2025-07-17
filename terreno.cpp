@@ -2,7 +2,20 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <ctime>
+
 using namespace std;
+
+Terreno::Terreno(int l, int a, int altitude[])
+{
+    largura = l;
+    altura = a;
+
+    for(int i = 0; MAX_SIZE > i; i++)
+    {
+        altitudes[i] = altitude[i];
+    }
+}
 
 int Array_uni(int lin, int col, int tamanho){
     return lin * tamanho + col;
@@ -23,11 +36,8 @@ void Diamond(int matriz[],const int tamanho, int des, double rug){
             matriz[Array_uni(i, j, tamanho)] = (soma / 4) * rug;
             
         }
-        
     }
-
 }
-
 
 void Square(int matriz[], const int tamanho, int des, double rug){
     int metade_des = des/2;
@@ -66,56 +76,46 @@ void Square(int matriz[], const int tamanho, int des, double rug){
     }
 }
 
-
-
-void Terreno::Gerar_terreno(int n, double rug){
-    int tamanho = pow(2,n) + 1;
-    int* point_tam = &tamanho;
-    int matriz[tamanho*tamanho];
-    int direito_sup, direito_inf, esquerdo_sup, esquerdo_inf;
-    int i = 0;
-
-}
-
 void printMatriz(int matriz[], int tamanho) {
     for (int y = 0; y < tamanho; ++y) {
         for (int x = 0; x < tamanho; ++x) {
-             cout << matriz[Array_uni(x, y, tamanho)] << " ";
-         }
-         cout << endl;
-     }
-     cout << endl;
+            cout << matriz[Array_uni(x, y, tamanho)] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 
+void Terreno::Gerar_terreno(int n, double rug){
+    int tamanho = pow(2,n) + 1;
+    int matriz[tamanho*tamanho];
+    int des = tamanho - 1;
+    srand(time(0));
+    matriz[0] = rand() % 100;
+    matriz[tamanho-1] = rand() % 100;
+    matriz[tamanho*tamanho - tamanho] = rand() % 100; 
+    matriz[tamanho*tamanho - 1] = rand() % 100;
+
+    while(des > 1){
+        Diamond(matriz,tamanho,des, rug);
+        Square(matriz,tamanho, des, rug);
+        des /= 2;
+        //rug /= 2;
+    }
+    printMatriz(matriz,tamanho); 
+}
 
 int main(){
-    int matriz[81];
-    for(int i = 0; 81 > i; i++)
-    {
-        matriz[i] = 0;
-    }
-    int des = 8;
-    int tam = 9;
-    matriz[0] = 100;
-   
-    matriz[8] = 100;
-    
-    matriz[72] = 100;
-   
-    matriz[80] = 100;
 
-    printMatriz(matriz,9);
-    double rug = 1;
+    int matriz[81];
+    Terreno meuTerreno(9 ,9 ,matriz);
     
-    while(des > 1){
-         Diamond(matriz,tam,des, rug);
-         Square(matriz, tam, des, rug);
-         //printMatriz(matriz,9);
-    des /= 2;
-    } 
-        
-    printMatriz(matriz,9);
-   
+    // Gera um terreno com n=3 (tamanho 9x9) e rugosidade 0.5
+    meuTerreno.Gerar_terreno(3, 0.5);
+    
+    // Gera outro terreno com n=2 (tamanho 5x5) e rugosidade 0.3
+    //meuTerreno.Gerar_terreno(2, 0.3);
+
     return 0;
 }
 
