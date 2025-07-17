@@ -4,7 +4,7 @@ static const int MAX_SIZE = 100;
 class Terreno{
     int largura;
     int altura;
-    int altitudes[MAX_SIZE];
+    int* altitudes;
 
     public:
     Terreno(int l, int a);
