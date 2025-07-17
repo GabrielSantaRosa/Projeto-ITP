@@ -3,22 +3,37 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
-
+#include <fstream>
 using namespace std;
 
-Terreno::Terreno(int l, int a, int altitude[])
+int Array_uni(int lin, int col, int tamanho){
+    return lin * tamanho + col;
+}
+
+void printMatriz(int matriz[], int tamanho) {
+    for (int y = 0; y < tamanho; ++y) {
+        for (int x = 0; x < tamanho; ++x) {
+            cout << matriz[Array_uni(x, y, tamanho)] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+Terreno::Terreno(int l, int a)
 {
     largura = l;
     altura = a;
 
     for(int i = 0; MAX_SIZE > i; i++)
     {
-        altitudes[i] = altitude[i];
+        altitudes[i] = 0;
+
     }
 }
-
-int Array_uni(int lin, int col, int tamanho){
-    return lin * tamanho + col;
+Terreno::~Terreno()
+{
+    delete altitudes;
 }
 
 void Diamond(int matriz[],const int tamanho, int des, double rug){
@@ -33,7 +48,8 @@ void Diamond(int matriz[],const int tamanho, int des, double rug){
                 matriz[Array_uni(i + metade_des, j - metade_des, tamanho)] + 
                 matriz[Array_uni(i + metade_des, j + metade_des, tamanho)];
           
-            matriz[Array_uni(i, j, tamanho)] = (soma / 4) * rug;
+            matriz[Array_uni(i, j, tamanho)] = (soma / 4) + (rand()%61-30)*rug;
+            
             
         }
     }
@@ -70,20 +86,10 @@ void Square(int matriz[], const int tamanho, int des, double rug){
             }
             // Só calcula a média se houver vizinhos válidos
             if (count > 0) {
-                matriz[Array_uni(i, j, tamanho)] = soma / count;
+                matriz[Array_uni(i, j, tamanho)] = soma / count + (rand()%61-30)*rug;
             }
         }
     }
-}
-
-void printMatriz(int matriz[], int tamanho) {
-    for (int y = 0; y < tamanho; ++y) {
-        for (int x = 0; x < tamanho; ++x) {
-            cout << matriz[Array_uni(x, y, tamanho)] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
 }
 
 void Terreno::Gerar_terreno(int n, double rug){
@@ -91,31 +97,73 @@ void Terreno::Gerar_terreno(int n, double rug){
     int matriz[tamanho*tamanho];
     int des = tamanho - 1;
     srand(time(0));
-    matriz[0] = rand() % 100;
-    matriz[tamanho-1] = rand() % 100;
-    matriz[tamanho*tamanho - tamanho] = rand() % 100; 
-    matriz[tamanho*tamanho - 1] = rand() % 100;
+    matriz[0] = rand() % 101;
+    matriz[tamanho-1] = rand() % 101;
+    matriz[tamanho*tamanho - tamanho] = rand() % 101; 
+    matriz[tamanho*tamanho - 1] = rand() % 101;
 
     while(des > 1){
         Diamond(matriz,tamanho,des, rug);
         Square(matriz,tamanho, des, rug);
         des /= 2;
-        //rug /= 2;
+        rug /= pow(2,(double)(rand()) / RAND_MAX);
+    }
+
+    altura = largura = tamanho;
+    for(int i = 0; i < tamanho*tamanho; i++){
+        altitudes[i] = matriz[i];
     }
     printMatriz(matriz,tamanho); 
 }
 
+int Terreno::Consulta_alt(int lin, int col){
+    return altitudes[Array_uni(lin,col,largura)];
+}
+
+int Terreno::Consulta_lin(){
+    return largura;
+}
+
+int Terreno::Consulta_col(){
+    return altura;
+}
+
+void Terreno::Salvar_terreno(std::string arquivo){
+    ofstream canal(arquivo);
+    canal << largura << endl;
+    canal << altura << endl;
+    for(int i = 0; i < largura*altura; i++){
+        canal << altitudes[i] << " ";
+    }
+}
+
+void Terreno::Ler_arquivo(std::string arquivo){
+    fstream canal(arquivo);
+    canal >> largura;
+    canal >> altura;
+    for(int i = 0; i < largura*altura; i++){
+        canal >> altitudes[i];
+    }
+    printMatriz(altitudes,largura); 
+}
+
 int main(){
 
-    int matriz[81];
-    Terreno meuTerreno(9 ,9 ,matriz);
+    
+    Terreno meuTerreno(9 ,9);
     
     // Gera um terreno com n=3 (tamanho 9x9) e rugosidade 0.5
-    meuTerreno.Gerar_terreno(3, 0.5);
-    
+    meuTerreno.Gerar_terreno(3, 1.0);
+    std::string arquivo = "teste.txt";
+    //meuTerreno.Ler_arquivo(arquivo);
+    cout << meuTerreno.Consulta_alt(0,2) << endl;
+    meuTerreno.Salvar_terreno(arquivo);
+
     // Gera outro terreno com n=2 (tamanho 5x5) e rugosidade 0.3
     //meuTerreno.Gerar_terreno(2, 0.3);
+    
 
     return 0;
+
 }
 
