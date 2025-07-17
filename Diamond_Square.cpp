@@ -84,7 +84,7 @@ void Diamond_Square(int dimensao, int matriz[], int tamanho, double rug)
 void printMatriz(int matriz[], int tamanho) {
     for (int y = 0; y < tamanho; ++y) {
         for (int x = 0; x < tamanho; ++x) {
-            cout << matriz[Array_uni(x, y, tamanho)] << " ";
+            cout << matriz[Array_uni(y, x, tamanho)] << " ";
         }
         cout << endl;
     }

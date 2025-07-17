@@ -17,6 +17,7 @@ class Paleta{
     int altura[MAX_CORES];
 
     public:
+    //Construtor vazio
     Paleta();
     Paleta(int q, Cor c[], int a[]);
     int Consulta_quantidade();

@@ -1,3 +1,5 @@
+#ifndef __IMAGEM
+#define __IMAGEM
 #include "Paleta.h"
 #include <string>
 
@@ -11,3 +13,4 @@ class Imagem{
     void Definir_pixel(int x, int y, Cor nova_cor);
     void Salvar_imagem(std::string arquivo);
 };
+#endif

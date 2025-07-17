@@ -10,8 +10,8 @@ Terreno::Terreno(int l, int a)
     largura = l;
     altura = a;
 
-    altitudes = new int[MAX_SIZE];
-    for(int i = 0; MAX_SIZE > i; i++)
+    altitudes = new int[largura*altura];
+    for(int i = 0; largura*altura > i; i++)
     {
         altitudes[i] = 0;
     }
@@ -52,9 +52,12 @@ void Terreno::Salvar_terreno(std::string arquivo){
     ofstream canal(arquivo);
     canal << largura << endl;
     canal << altura << endl;
-    for(int i = 0; i < largura*altura; i++){
-        canal << altitudes[i] << " ";
+    for(int i = 0; i < largura; i++){
+        for(int j = 0; j < altura; j++)
+        canal << altitudes[Array_uni(i,j,altura)] << " ";
+        canal << endl;
     }
+    
 }
 
 void Terreno::Ler_arquivo(std::string arquivo){
