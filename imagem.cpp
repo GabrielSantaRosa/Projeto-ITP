@@ -36,23 +36,23 @@ void Imagem::Salvar_imagem(std::string arquivo){
     canal.close();
 }
 
-int main(){
-    Cor vermelho = {255, 0 ,0 };
-    Cor verde = {0, 255, 0};
-    Cor azul = {0, 0, 255};
-    Cor preto = {0, 0, 0};
-    Cor branco = {255, 255, 255};
-    Imagem img(2,3);
-    img.Definir_pixel(0,0, azul);
-    img.Definir_pixel(0,1, azul);
+//int main(){
+    //Cor vermelho = {255, 0 ,0 };
+    //Cor verde = {0, 255, 0};
+    //Cor azul = {0, 0, 255};
+    //Cor preto = {0, 0, 0};
+    //Cor branco = {255, 255, 255};
+    //Imagem img(2,3);
+    //img.Definir_pixel(0,0, azul);
+    //img.Definir_pixel(0,1, azul);
 
-    img.Definir_pixel(1,0, branco);
-    img.Definir_pixel(1,1, branco);
+    //img.Definir_pixel(1,0, branco);
+    //img.Definir_pixel(1,1, branco);
 
-    img.Definir_pixel(2,0, vermelho);
-    img.Definir_pixel(2,1, vermelho);
+    //img.Definir_pixel(2,0, vermelho);
+    //img.Definir_pixel(2,1, vermelho);
 
     
-    img.Salvar_imagem("teste2.ppm");
-    return 0;
-}
+    //img.Salvar_imagem("teste2.ppm");
+    //return 0;
+//}

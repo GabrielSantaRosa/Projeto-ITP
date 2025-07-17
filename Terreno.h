@@ -58,7 +58,7 @@ class Terreno{
       * @param n n usado para determinar o tamanho da imagem
       * @return Uma tipo imagem
       */
-     Imagem Gerar_mapa(Paleta p, int n);
+     Imagem* Gerar_mapa(Paleta p, int n);
 
 };
 #endif
