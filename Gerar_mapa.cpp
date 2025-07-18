@@ -22,9 +22,9 @@ Imagem* Terreno::Gerar_mapa(Paleta p, int n){
         for(int j = 1; j < tamanho; j++){
             if(altitudes[Array_uni(i-1,j-1,tamanho)] > altitudes[Array_uni(i,j,tamanho)]){
                 cor_temp = p.Consulta_cor(altitudes[Array_uni(i,j,tamanho)]);
-                cor_temp.b/2;
-                cor_temp.g/2;
-                cor_temp.r/2;
+                cor_temp.b *= sqrt(0.5); 
+                cor_temp.g *= sqrt(0.5);
+                cor_temp.r *= sqrt(0.5);
                 nova_imagem->Definir_pixel(i,j,cor_temp);
             }
         }
@@ -36,10 +36,10 @@ Imagem* Terreno::Gerar_mapa(Paleta p, int n){
 int main(){
     Paleta p;
     //Imagem* img(9,9);
-    Terreno t(17,17);
-    t.Gerar_terreno(4, 0.4);
+    Terreno t(513,513);
+    t.Gerar_terreno(9, 0.5);
     p.Ler_arquivo("paleta.txt");
 
-    t.Gerar_mapa(p, 4);
+    t.Gerar_mapa(p, 9);
     return 0;
 }

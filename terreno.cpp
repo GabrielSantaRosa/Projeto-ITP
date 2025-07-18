@@ -33,7 +33,6 @@ void Terreno::Gerar_terreno(int n, double rug){
     for(int i = 0; i < tamanho*tamanho; i++){
         altitudes[i] = matriz[i];
     }
-    printMatriz(matriz,tamanho);
 }
 
 int Terreno::Consulta_alt(int lin, int col){
@@ -67,23 +66,4 @@ void Terreno::Ler_arquivo(std::string arquivo){
     for(int i = 0; i < largura*altura; i++){
         canal >> altitudes[i];
     }
-    printMatriz(altitudes,largura);
 }
-
-//int main(){
-    //Terreno meuTerreno(9 ,9);
-
-    // Gera um terreno com n=3 (tamanho 9x9) e rugosidade 0.5
-    //meuTerreno.Gerar_terreno(3, 1.0);
-    //std::string arquivo = "teste.txt";
-    //meuTerreno.Ler_arquivo(arquivo);
-    //cout << meuTerreno.Consulta_alt(0,1) << endl;
-    //meuTerreno.Salvar_terreno(arquivo);
-    //meuTerreno.~Terreno();
-    // Gera outro terreno com n=2 (tamanho 5x5) e rugosidade 0.3
-    //meuTerreno.Gerar_terreno(2, 0.3);
-    //cout << meuTerreno.Consulta_alt(0,2) << endl;
-
-    //return 0;
-//}
-
