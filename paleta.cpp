@@ -29,14 +29,12 @@ int Paleta::Consulta_quantidade(){
 Cor Paleta::Consulta_cor(int a){
     Cor cor_final = cores[0];
     for(int i = 0; i < quantidade - 1; i++){
-        if(a >= altura[i] && a <= altura[i+1]){
-            cor_final = cores[i];
+        if(a <= altura[i] && a <= altura[i+1]){
+            return cores[i];
         }
-        else{
-            cor_final = cores[i+1];
-        }   
     }
-    return cor_final;
+
+    return cores[quantidade-1];
 }
 
 void Paleta::Ler_arquivo(string arquivo){
