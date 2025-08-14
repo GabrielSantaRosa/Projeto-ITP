@@ -39,6 +39,7 @@ int main(){
     Terreno t(513,513);
     t.Gerar_terreno(9, 0.5);
     p.Ler_arquivo("paleta.txt");
+    
 
     t.Gerar_mapa(p, 9);
     return 0;
